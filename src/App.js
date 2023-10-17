@@ -13,14 +13,15 @@ export default function Estatico1() {
     const [fim, setFim] = useState('')
     const [meuTimer, setMeuTimer] = useState(5)
     const [trapaca, setTrapaca] = useState(false)
-    const [score, setScore] = useState(localStorage.getItem('score') || '0')
-
-   
+    const [score, setScore] = useState(() => {
+        const localData = localStorage.getItem('score');
+        return localData ? JSON.parse(localData) : [];
+      });
 
     useEffect(()=>{
         let _score = typeof window !== 'undefined' ? localStorage.getItem('score') : null;
-        let score = Number.parseInt(_score)
-        setScore(score)
+       
+        setScore(_score)
     },[])
 
 
@@ -65,19 +66,19 @@ export default function Estatico1() {
 
         if (res == value && trapaca == false) {
             setFim(<h1 style={{ color: 'green' }}>Parabéns, Acertou!!</h1>)
-            let _score = Number.parseInt(score)
-            setScore(_score + 1)
+            
+            setScore(score + 1)
         } else if (trapaca) {
-          let _score = Number.parseInt(score)
-          setScore(_score - 3)
+         
+          setScore(score - 3)
         }
         else {
             setFim(<h1 style={{ color: 'red' }}>Errou, Tente outra vez!</h1>)
             if (score == 0) {
                 return
             } else {
-              let _score = Number.parseInt(score)
-              setScore(_score - 1)
+             
+              setScore(score - 1)
             }
         }
     }
