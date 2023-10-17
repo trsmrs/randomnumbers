@@ -13,7 +13,7 @@ export default function Estatico1() {
     const [fim, setFim] = useState('')
     const [meuTimer, setMeuTimer] = useState(5)
     const [trapaca, setTrapaca] = useState(false)
-    const [score, setScore] = useState(localStorage.getItem('score') || '0')
+    const [score, setScore] = useState(localStorage.getItem('score') || 0)
 
    
 
