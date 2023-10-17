@@ -16,19 +16,19 @@ export default function Estatico1() {
     const [score, setScore] = useState(() => {
         const localData = localStorage.getItem('score');
         return localData ? JSON.parse(localData) : [];
-      });
+    });
 
-    useEffect(()=>{
+    useEffect(() => {
         let _score = typeof window !== 'undefined' ? localStorage.getItem('score') : null;
-       
+
         setScore(_score)
-    },[])
+    }, [])
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem('score', score)
-    },[score])
+    }, [score])
 
 
 
@@ -66,19 +66,19 @@ export default function Estatico1() {
 
         if (res == value && trapaca == false) {
             setFim(<h1 style={{ color: 'green' }}>Parabéns, Acertou!!</h1>)
-            
+
             setScore(score + 1)
         } else if (trapaca) {
-         
-          setScore(score - 3)
+
+            setScore(score - 3)
         }
         else {
             setFim(<h1 style={{ color: 'red' }}>Errou, Tente outra vez!</h1>)
             if (score == 0) {
                 return
             } else {
-             
-              setScore(score - 1)
+
+                setScore(score - 1)
             }
         }
     }
@@ -90,13 +90,19 @@ export default function Estatico1() {
             backgroundColor: '#ddd'
         }}>
             {/* Score */}
-            <span style={{
-                alignSelf: "end", marginBottom: '20px',
-                backgroundColor: 'white', borderRadius: '3px', padding: '4px', color: 'purple', fontSize: '1.2rem',
-                fontWeight: 'bolder'
-            }}>Score: {score}</span>
-
-
+            { score ?
+                <span style={{
+                    alignSelf: "end", marginBottom: '20px',
+                    backgroundColor: 'white', borderRadius: '3px', padding: '4px', color: 'purple', fontSize: '1.2rem',
+                    fontWeight: 'bolder'
+                }}>Score: {score}</span>
+                :
+                <span style={{
+                    alignSelf: "end", marginBottom: '20px',
+                    backgroundColor: 'white', borderRadius: '3px', padding: '4px', color: 'purple', fontSize: '1.2rem',
+                    fontWeight: 'bolder'
+                }}>Score: 0</span>
+            }
             <h1 style={{
                 fontSize: '2.3rem', textAlign: 'center', marginTop: '0px', marginBottom: '30px',
                 backgroundColor: 'rebeccapurple', color: 'white', borderRadius: '4px', padding: '5px'
