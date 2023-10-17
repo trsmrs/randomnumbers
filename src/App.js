@@ -13,14 +13,13 @@ export default function Estatico1() {
     const [fim, setFim] = useState('')
     const [meuTimer, setMeuTimer] = useState(5)
     const [trapaca, setTrapaca] = useState(false)
-    const [score, setScore] = useState(localStorage.getItem('score') || 0)
+    const [score, setScore] = useState(localStorage.getItem('score') || '0')
 
    
 
     useEffect(()=>{
-
-      let _score = localStorage.getItem('score')
-      let score = Number.parseInt(_score)
+        let _score = typeof window !== 'undefined' ? localStorage.getItem('score') : null;
+        let score = Number.parseInt(_score)
         setScore(score)
     },[])
 
